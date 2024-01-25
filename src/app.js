@@ -18,6 +18,9 @@ import { dbInstance } from "./db/index.js";
 // import { ApiError } from "./utils/ApiError.js";
 // import { ApiResponse } from "./utils/ApiResponse.js";
 
+import todoRouter from "./routes/todo.routes.js";
+import { errorHandler } from "./middlewares/error.middlewares.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -76,14 +79,18 @@ app.use(express.static("public")); // configure static file to save images local
 app.use(cookieParser());
 
 // required for passport
-app.use(
-  session({
-    secret: process.env.EXPRESS_SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(
+//   session({
+//     secret: process.env.EXPRESS_SESSION_SECRET,
+//     resave: true,
+//     saveUninitialized: true,
+//   })
+// ); // session secret
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
+app.use("/api/v1", todoRouter);
+
+// common error handling middleware
+app.use(errorHandler);
 
 export { httpServer };
