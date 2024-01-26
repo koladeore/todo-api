@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: TodApi
+  description: >-
+    # API.app
+    The todo api enable user to create, update, delete, and more
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: 'http://localhost:8080/api/v1'
+paths:
+  /createTodo:
+    post:
+      tags:
+        - 📝 Todo list
+      summary: Create todo
+      description: >-
+        The "Create Todo" API endpoint allows you to create a new todo item by
+        providing the title and description as a request body.
+
+        By accessing this endpoint and providing the necessary information, a
+        new todo item will be created in the system.
+      operationId: createTodo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Some description about todo which is optional
+                title:
+                  type: string
+                  example: Create a new story todo
+            example:
+              description: Some description about todo which is optional
+              title: Create a new story todo
+      responses:
+        '201':
+          description: Create todo
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '252'
+            Date:
+              schema:
+                type: string
+                example: Fri, 26 Jan 2024 19:19:37 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"fc-KokD5QGTQLUd8zQOFigtnFMkxLs"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 648e0749aeefd0cfa40adde1
+                      createdAt:
+                        type: string
+                        example: '2023-06-17T19:19:37.856Z'
+                      description:
+                        type: string
+                        example: ''
+                      isDone:
+                        type: boolean
+                        example: false
+                      title:
+                        type: string
+                        example: Learn Ruby                         
+                      updatedAt:
+                        type: string
+                        example: '2023-06-17T19:19:37.856Z'
+                message:
+                  type: string
+                  example: Todo created successfully
+                statusCode:
+                  type: number
+                  example: 201
+                success:
+                  type: boolean
+                  example: true    
+            examples:
+              Create todo:
+                value:
+                  data:
+                    __v: 0
+                    _id: 648e0749aeefd0cfa40adde1
+                    createdAt: '2023-06-17T19:19:37.856Z'
+                    description: ''
+                    isDone: false
+                    title: Learn Ruby
+                    updatedAt: '2023-06-17T19:19:37.856Z'
+                  message: Todo created successfully
+                  statusCode: 201
+                  success: true  
