@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: TodApi
+  title: TodoApi
   description: >-
     # API.app
     The todo api enable user to create, update, delete, and more
@@ -124,3 +124,277 @@ paths:
                   message: Todo created successfully
                   statusCode: 201
                   success: true  
+  /getAllTodos:
+    get:
+      tags:
+        - 📝 Todo list
+      summary: Get all todos
+      description: >-
+        The API endpoint allows you to retrieve all the added todos.
+
+        When accessing this endpoint, you will receive a response containing a
+        list of all the todos that have been added.
+      operationId: getAllTodos
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+            example: reactjs
+        - name: complete
+          in: query
+          schema:
+            type: string
+            example: 'false'
+      responses:
+        '200':
+          description: Get all todos
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '815'
+            Date:
+              schema:
+                type: string
+                example: Sat, 17 Jun 2023 19:19:40 GMT
+            ETag:
+              schema:
+                type: string
+                example:  W/"32f-LlDKeMfFfXV5TgAkP4oFcqRrOrI"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express                                   
+          content:
+            application/json:
+              schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example:  648e070a36b0cc220c8a7883
+                      createdAt:
+                        type: string
+                        example: '2023-06-17T19:18:34.462Z'
+                      description:
+                        type: string
+                        example: Some description about todo
+                      isDone:
+                        type: boolean
+                        example: false
+                      title:
+                        type: string
+                        example: Learn java
+                      updatedAt:
+                        type: string
+                        example: '2023-06-17T19:18:34.462Z'            
+                  example:
+                    - __v: 0
+                      _id: 648e070a36b0cc220c8a7883
+                      createdAt: '2023-06-17T19:18:34.462Z'
+                      description: Some description about todo
+                      isDone: false
+                      title: Learn java
+                      updatedAt: '2023-06-17T19:18:34.462Z'
+                    - __v: 0
+                      _id: 648e0741aeefd0cfa40adddd
+                      createdAt: '2023-06-17T19:19:29.887Z'
+                      description: ''
+                      isDone: false
+                      title: Learn Javascript
+                      updatedAt: '2023-06-17T19:19:29.887Z'
+                    - __v: 0
+                      _id: 648e0746aeefd0cfa40adddf
+                      createdAt: '2023-06-17T19:19:34.866Z'
+                      description: ''
+                      isDone: false
+                      title: Learn ReactJs
+                      updatedAt: '2023-06-17T19:19:34.866Z'
+                    - __v: 0
+                      _id: 648e0749aeefd0cfa40adde1
+                      createdAt: '2023-06-17T19:19:37.856Z'
+                      description: ''
+                      isDone: false
+                      title: Learn Ruby
+                      updatedAt: '2023-06-17T19:19:37.856Z'
+                message:
+                  type: string
+                  example: Todos fetched successfully
+                statusCode:
+                  type: number
+                  example: 200
+                success:
+                  type: boolean
+                  example: true
+            example:
+              Get all todos:
+                value:
+                  data:
+                    - __v: 0
+                      _id: 648e070a36b0cc220c8a7883
+                      createdAt: '2023-06-17T19:18:34.462Z'
+                      description: Some description about todo
+                      isDone: false
+                      title: Learn java
+                      updatedAt: '2023-06-17T19:18:34.462Z'
+                    - __v: 0
+                      _id: 648e0741aeefd0cfa40adddd
+                      createdAt: '2023-06-17T19:19:29.887Z'
+                      description: ''
+                      isDone: false
+                      title: Learn Javascript
+                      updatedAt: '2023-06-17T19:19:29.887Z'
+                    - __v: 0
+                      _id: 648e0746aeefd0cfa40adddf
+                      createdAt: '2023-06-17T19:19:34.866Z'
+                      description: ''
+                      isDone: false
+                      title: Learn ReactJs
+                      updatedAt: '2023-06-17T19:19:34.866Z'
+                    - __v: 0
+                      _id: 648e0749aeefd0cfa40adde1
+                      createdAt: '2023-06-17T19:19:37.856Z'
+                      description: ''
+                      isDone: false
+                      title: Learn Ruby
+                      updatedAt: '2023-06-17T19:19:37.856Z'
+                  message: Todos fetched successfully
+                  statusCode: 200
+                  success: true          
+  /todo/{todoId}:
+    get:
+      tags:
+        - 📝 Todo list
+      summary: Get todo by id
+      description: >-
+        The API endpoint retrieves a specific todo item based on the todo ID
+        provided as a path variable in the URL.
+
+        When accessing this endpoint and specifying a valid todo ID in the URL,
+        you will receive a response containing the details of the corresponding
+        todo item.
+      operationId: getTodoById
+      parameters:
+        - name: todoId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 65b44bfa65dd2a2e5bdd8e28
+      responses:
+        '200':
+          description: Get todo by id
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '252'          
+            Date:
+              schema:
+                type: string
+                example: Sat, 17 Jun 2023 19:20:47 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"fc-fYDCM8s+LQiWUEHhEFxMk3KK9Qc"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express      
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 648e0749aeefd0cfa40adde1
+                      createdAt:
+                        type: string
+                        example: '2023-06-17T19:19:37.856Z'
+                      description:
+                        type: string
+                        example: ''
+                      isDone:
+                        type: boolean
+                        example: false
+                      title:
+                        type: string
+                        example: Learn Ruby
+                      updatedAt:
+                        type: string
+                        example: '2023-06-17T19:19:37.856Z'          
+                  message:
+                    type: string
+                    example: Todo fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true      
+              examples:
+                Get todo by id:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 648e0749aeefd0cfa40adde1
+                      createdAt: '2023-06-17T19:19:37.856Z'
+                      description: ''
+                      isDone: false
+                      title: Learn Ruby
+                      updatedAt: '2023-06-17T19:19:37.856Z'
+                    message: Todo fetched successfully
+                    statusCode: 200
+                    success: true
+                      
+
+
+
