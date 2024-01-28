@@ -355,7 +355,7 @@ paths:
                         example: 0
                       _id:
                         type: string
-                        example: 648e0749aeefd0cfa40adde1
+                        example: 65b44bfa65dd2a2e5bdd8e28
                       createdAt:
                         type: string
                         example: '2023-06-17T19:19:37.856Z'
@@ -385,7 +385,7 @@ paths:
                   value:
                     data:
                       __v: 0
-                      _id: 648e0749aeefd0cfa40adde1
+                      _id: 65b44bfa65dd2a2e5bdd8e28
                       createdAt: '2023-06-17T19:19:37.856Z'
                       description: ''
                       isDone: false
@@ -394,7 +394,351 @@ paths:
                     message: Todo fetched successfully
                     statusCode: 200
                     success: true
-                      
+    patch:
+      tags:
+        
+        - 📝 Todo list
+      summary: Update todo
+      description: >-
+        The API endpoint is responsible for updating a todo based on the
+        provided todo ID in the URL path variable.
 
+
+        When accessing this endpoint and providing the updated todo title and
+        description in the request body, the corresponding todo with the
+        specified ID will be modified accordingly.
+      operationId: updateTodo
+      parameters:
+        - name: todoId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 65b44bfa65dd2a2e5bdd8e28
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Updated description of the todo
+                title:
+                  type: string
+                  example: Updated todo title
+            example:
+              description: A new description for the todo
+              title: A new title for the todo
+      responses:
+        '200':
+          description: Update todo
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '277'
+            Date:
+              schema:
+                type: string
+                example: Sat, 17 Jun 2023 19:21:54 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"115-+z/wpUMotHlJe0Ob6u5SG/RvKBs"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 65b44bfa65dd2a2e5bdd8e28
+                      createdAt:
+                        type: string
+                        example: '2023-06-17T19:19:37.856Z'
+                      description:
+                        type: string
+                        example: Updated description
+                      isDone:
+                        type: boolean
+                        example: false
+                      title:
+                        type: string
+                        example: Updated ruby name
+                      updatedAt:
+                        type: string
+                        example: '2023-06-17T19:21:54.446Z'
+                  message:
+                    type: string
+                    example: Todo updated successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Update todo:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 65b44bfa65dd2a2e5bdd8e28
+                      createdAt: '2023-06-17T19:19:37.856Z'
+                      description: Updated description
+                      isDone: false
+                      title: Updated ruby name
+                      updatedAt: '2023-06-17T19:21:54.446Z'
+                    message: Todo updated successfully
+                    statusCode: 200
+                    success: true                  
+    delete:
+      tags:
+        
+        - 📝 Todo list
+      summary: Delete todo
+      description: >-
+        The API endpoint is responsible for deleting a todo item based on the
+        provided todoID in the path variable.
+
+
+        When accessing this endpoint and specifying the todoID in the URL, the
+        corresponding todo item will be deleted from the system.
+      operationId: deleteTodo
+      parameters:
+        - name: todoId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 65b5dbd1be4891362e8678bc
+      responses:
+        '200':
+          description: Delete todo
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '271'
+            Date:
+              schema:
+                type: string
+                example: Sat, 17 Jun 2023 19:23:31 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"10f-7UDFur/RLHAlGchjG57msSX30bM"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deletedTodo:
+                        type: object
+                        properties:
+                          __v:
+                            type: number
+                            example: 0
+                          _id:
+                            type: string
+                            example: 65b5dbd1be4891362e8678bc
+                          createdAt:
+                            type: string
+                            example: '2023-06-17T19:19:34.866Z'
+                          description:
+                            type: string
+                            example: ''
+                          isDone:
+                            type: boolean
+                            example: false
+                          title:
+                            type: string
+                            example: Learn ReactJs
+                          updatedAt:
+                            type: string
+                            example: '2023-06-17T19:19:34.866Z'
+                  message:
+                    type: string
+                    example: Todo deleted successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Delete todo:
+                  value:
+                    data:
+                      deletedTodo:
+                        __v: 0
+                        _id: 65b5dbd1be4891362e8678bc
+                        createdAt: '2023-06-17T19:19:34.866Z'
+                        description: ''
+                        isDone: false
+                        title: Learn ReactJs
+                        updatedAt: '2023-06-17T19:19:34.866Z'
+                    message: Todo deleted successfully
+                    statusCode: 200
+                    success: true
+  /toggle/status/{todoId}:
+    patch:
+      tags:
+        
+        - 📝 Todo list
+      summary: Toggle todo done status
+      description: >-
+        The API endpoint is responsible for toggling the done status of a todo
+        item.
+
+
+        When accessing this endpoint and providing the necessary data, you can
+        update the completion status of a specific todo item, marking it as
+        either done or undone based on its current status.
+      operationId: toggleTodoDoneStatus
+      responses:
+        '200':
+          description: Toggle todo done status
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '234'
+            Date:
+              schema:
+                type: string
+                example: Sat, 17 Jun 2023 19:40:04 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"ea-BaNPJdAcA+Hnzwf+MEqMnN4sFho"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 65b44bfa65dd2a2e5bdd8e28
+                      createdAt:
+                        type: string
+                        example: '2023-06-17T19:39:51.789Z'
+                      description:
+                        type: string
+                        example: ''
+                      isComplete:
+                        type: boolean
+                        example: true
+                      title:
+                        type: string
+                        example: Learn Ruby
+                      updatedAt:
+                        type: string
+                        example: '2023-06-17T19:40:04.266Z'
+                  message:
+                    type: string
+                    example: done
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Toggle todo done status:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 65b44bfa65dd2a2e5bdd8e28
+                      createdAt: '2023-06-17T19:39:51.789Z'
+                      description: ''
+                      isComplete: true
+                      title: Learn Ruby
+                      updatedAt: '2023-06-17T19:40:04.266Z'
+                    message: done
+                    statusCode: 200
+                    success: true
+    parameters:
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 65b44bfa65dd2a2e5bdd8e28
 
 

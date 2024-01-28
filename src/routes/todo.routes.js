@@ -1,8 +1,11 @@
 import { Router } from "express";
 import {
   createTodo,
+  deleteTodo,
   getAllTodos,
   getTodoById,
+  toggleTodoDoneStatus,
+  updateTodo,
 } from "../controllers/todo.controllers.js";
 import {
   createTodoValidator,
@@ -18,6 +21,11 @@ router
   .get(getAllTodosQueryValidators(), validate, getAllTodos);
 router
   .route("/todo/:todoId")
-  .get(getByIdValidator("todoId"), validate, getTodoById);
+  .get(getByIdValidator("todoId"), validate, getTodoById)
+  .patch(getByIdValidator("todoId"), validate, updateTodo)
+  .delete(getByIdValidator("todoId"), validate, deleteTodo);
+router
+  .route("/toggle/status/:todoId")
+  .patch(getByIdValidator("todoId"), validate, toggleTodoDoneStatus);
 
 export default router;
