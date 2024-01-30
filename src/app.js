@@ -1,23 +1,13 @@
 import cookieParser from "cookie-parser";
-import cors from "cors";
 import express from "express";
 import { rateLimit } from "express-rate-limit";
-import session from "express-session";
 import fs from "fs";
 import { createServer } from "http";
-import passport from "passport";
 import path from "path";
 import requestIp from "request-ip";
-// import { Server } from "socket.io";
 import swaggerUi from "swagger-ui-express";
 import { fileURLToPath } from "url";
 import YAML from "yaml";
-import { DB_NAME } from "./constants.js";
-import { dbInstance } from "./db/index.js";
-// import { initializeSocketIO } from "./socket/index.js";
-// import { ApiError } from "./utils/ApiError.js";
-// import { ApiResponse } from "./utils/ApiResponse.js";
-
 import todoRouter from "./routes/todo.routes.js";
 import { errorHandler } from "./middlewares/error.middlewares.js";
 
@@ -30,24 +20,6 @@ const swaggerDocument = YAML.parse(file);
 const app = express();
 
 const httpServer = createServer(app);
-
-// const io = new Server(httpServer, {
-//   pingTimeout: 60000,
-//   cors: {
-//     origin: process.env.CORS_ORIGIN,
-//     credentials: true,
-//   },
-// });
-
-// app.set("io", io); // using set method to mount the `io` instance on the app to avoid usage of `global`
-
-// global middlewares
-// app.use(
-//   cors({
-//     origin: process.env.CORS_ORIGIN,
-//     credentials: true,
-//   })
-// );
 
 app.use(requestIp.mw());
 
@@ -77,17 +49,6 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // configure static file to save images locally
 app.use(cookieParser());
-
-// required for passport
-// app.use(
-//   session({
-//     secret: process.env.EXPRESS_SESSION_SECRET,
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// ); // session secret
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
 
 app.use("/api/v1", todoRouter);
 
