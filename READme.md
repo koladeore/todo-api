@@ -4,7 +4,7 @@
 
 ### 📦 Using Docker (recommended)
 
-To run the FreeAPI project, follow these steps:
+To run the TodoAPI project, follow these steps:
 
 1. Install [Docker](https://www.docker.com/) on your machine.
 2. Clone the project repository.
